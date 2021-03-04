@@ -11,7 +11,7 @@ public class ImageConverter implements Converter {
     private File image;
 
     @Override
-    public void defineImages(String formatInit, String formatEnd) {
+    public void defineFormatImages(String formatInit, String formatEnd) {
         this.formatInit = formatInit;
         this.formatEnd = formatEnd;
     }
@@ -22,12 +22,15 @@ public class ImageConverter implements Converter {
     }
 
     @Override
-    public void startProcess() {
+    public File startProcess() {
         throw new RuntimeException("Failed for implementation");
     }
 
-    @Override
-    public void downloadImage() {
+    public String getFormatInit() {
+        return formatInit;
+    }
 
+    public void setFormatInit(String formatInit) {
+        this.formatInit = formatInit;
     }
 }
