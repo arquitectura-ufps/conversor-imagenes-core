@@ -1,17 +1,18 @@
 package co.edu.ufps.core;
 
 import co.edu.ufps.commons.Converter;
+import co.edu.ufps.commons.ImageFormat;
 
 import java.io.File;
 
 public class ImageConverter implements Converter {
 
-    private String formatInit;
-    private String formatEnd;
+    private ImageFormat formatInit;
+    private ImageFormat formatEnd;
     private File image;
 
     @Override
-    public void defineFormatImages(String formatInit, String formatEnd) {
+    public void defineFormatImages(ImageFormat formatInit, ImageFormat formatEnd) {
         this.formatInit = formatInit;
         this.formatEnd = formatEnd;
     }
@@ -26,11 +27,15 @@ public class ImageConverter implements Converter {
         throw new RuntimeException("Failed for implementation");
     }
 
-    public String getFormatInit() {
+    public ImageFormat getFormatInit() {
         return formatInit;
     }
 
-    public void setFormatInit(String formatInit) {
+    public void setFormatInit(ImageFormat formatInit) {
         this.formatInit = formatInit;
+    }
+
+    public void setFormatEnd(ImageFormat formatEnd) {
+        this.formatEnd = formatEnd;
     }
 }
