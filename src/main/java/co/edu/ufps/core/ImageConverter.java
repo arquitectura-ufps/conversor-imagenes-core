@@ -4,9 +4,12 @@ import co.edu.ufps.commons.Converter;
 import co.edu.ufps.commons.ConverterException;
 import co.edu.ufps.commons.ImageFormat;
 import co.edu.ufps.core.converter.*;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.util.Objects;
+
+import static java.util.Objects.isNull;
 
 public class ImageConverter implements Converter, IConverter {
 
@@ -14,6 +17,7 @@ public class ImageConverter implements Converter, IConverter {
     private ImageFormat formatEnd;
     private File image;
     private String folder;
+    private String nameFile;
 
     @Override
     public void defineFormatImages(ImageFormat formatInit, ImageFormat formatEnd) {
@@ -28,7 +32,14 @@ public class ImageConverter implements Converter, IConverter {
 
     @Override
     public File startProcess() throws ConverterException {
-        return start(image, formatEnd, myFolder());
+        String destination = myFolder() + "/" + myNameFile();
+        return start(image, formatEnd, destination);
+    }
+
+    private String myNameFile() {
+        return (isNull(nameFile) || nameFile.isEmpty()) ?
+                FilenameUtils.removeExtension(image.getName()) :
+                nameFile;
     }
 
     private String myFolder() {
@@ -50,5 +61,10 @@ public class ImageConverter implements Converter, IConverter {
     @Override
     public void setFolder(String folder) {
         this.folder = folder;
+    }
+
+    @Override
+    public void setName(String nameFile) {
+        this.nameFile = nameFile;
     }
 }
