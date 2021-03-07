@@ -1,7 +1,8 @@
 package co.edu.ufps;
 
 import co.edu.ufps.commons.Converter;
-import co.edu.ufps.commons.ConverterException;
+import co.edu.ufps.commons.Exception.ConverterException;
+import co.edu.ufps.commons.Exception.ValidationException;
 import co.edu.ufps.commons.ImageFormat;
 import co.edu.ufps.core.ImageConverter;
 
@@ -9,20 +10,28 @@ import java.io.File;
 
 public class MainTest {
     public static void main(String[] args) {
-        File image = new File("temp/perro.gif");
+        File image = new File("temp/caballo.jpg");
 
         Converter converter = new ImageConverter();
         converter.source(image);
-        converter.setName("Pirulais");
-        converter.setFolder("C:/Users/manuel.florez/Desktop");
+        converter.setName("prrosCambi");
+        converter.setFolder("C:/Users/manuel.florez/Desktop/img");
 
-        converter.defineFormatImages(ImageFormat.GIF, ImageFormat.PNG);
+        String mimeType = null;
+        try {
+            mimeType = converter.validateMimeType();
+        } catch (ValidationException e) {
+            e.printStackTrace();
+        }
+        ImageFormat formatInit = converter.validateMetaDataMineType(mimeType);
+
+        converter.defineFormatImages(formatInit, ImageFormat.PNG);
         run(converter);
 
-        converter.defineFormatImages(ImageFormat.GIF, ImageFormat.BMP);
+        converter.defineFormatImages(formatInit, ImageFormat.BMP);
         run(converter);
 
-        converter.defineFormatImages(ImageFormat.GIF, ImageFormat.JPG);
+        converter.defineFormatImages(formatInit, ImageFormat.JPG);
         run(converter);
 
     }

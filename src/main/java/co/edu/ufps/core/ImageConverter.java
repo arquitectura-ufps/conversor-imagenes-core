@@ -1,7 +1,9 @@
 package co.edu.ufps.core;
 
 import co.edu.ufps.commons.Converter;
-import co.edu.ufps.commons.ConverterException;
+import co.edu.ufps.commons.Exception.ConverterException;
+import co.edu.ufps.commons.Exception.ValidationException;
+import co.edu.ufps.commons.IValidation;
 import co.edu.ufps.commons.ImageFormat;
 import co.edu.ufps.core.converter.*;
 import org.apache.commons.io.FilenameUtils;
@@ -11,7 +13,8 @@ import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
-public class ImageConverter implements Converter, IConverter {
+public class ImageConverter implements Converter,
+        IConverter, IValidation {
 
     private ImageFormat formatInit;
     private ImageFormat formatEnd;
@@ -66,5 +69,15 @@ public class ImageConverter implements Converter, IConverter {
     @Override
     public void setName(String nameFile) {
         this.nameFile = nameFile;
+    }
+
+    @Override
+    public String validateMimeType() throws ValidationException {
+        return getMimeType(image);
+    }
+
+    @Override
+    public ImageFormat validateMetaDataMineType(String mimeType) {
+        return validateMetaDataMineType(mimeType);
     }
 }

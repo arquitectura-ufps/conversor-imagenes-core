@@ -1,6 +1,6 @@
 package co.edu.ufps.core.converter;
 
-import co.edu.ufps.commons.ConverterException;
+import co.edu.ufps.commons.Exception.ConverterException;
 import co.edu.ufps.commons.ImageFormat;
 
 import javax.imageio.ImageIO;

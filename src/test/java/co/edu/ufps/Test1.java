@@ -9,5 +9,6 @@ class Test1 {
     void run() {
         String file = "manuel.fefe.txt";
         System.out.println(FilenameUtils.removeExtension(file));
+        System.out.println(FilenameUtils.getExtension(file));
     }
 }
