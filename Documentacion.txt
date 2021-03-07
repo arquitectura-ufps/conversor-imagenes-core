@@ -1,0 +1,27 @@
+Documentación Diagnóstico Java
+
+Requerimientos funcionales:
+
+Se quiere desarrollar un Software que permita convertir tipos de imágenes (bmp, jpg, png, gif). El software debe permitir:
+
+•	Subir una imagen de cualquiera de estos cuatro (4) formatos: bmp, jpg, png y gif (se excluyen los gif animados).
+•	Al subir la imagen se detecta el tipo de imagen. La extensión del fichero puede ser equivocada a la metada de la imagen, lo cual es informado por la aplicación para que el usuario ajuste la extensión.
+•	Convertir la imagen a cualquiera de los otros tres (3) formatos, según lo desee el usuario.
+•	Descargar la imagen convertida después de que finaliza la conversión:
+
+o	En el caso de aplicación por consola (Shell) es automático, pero en el comando debe indicarse el directorio donde se desea descargar la imagen y el nombre de la imagen. Si no se indica, se almacena en la misma ruta del fichero original y se deja el mismo nombre (extensión diferente) del fichero original.
+o	En el caso de aplicación de escritorio es automático, pero previamente el usuario selecciona el directorio donde desea descargar la imagen y el nombre de la imagen. Si no se indica, se almacena en la misma ruta del fichero original y se deja el mismo nombre (extensión diferente) del fichero original.
+o	En el caso de aplicación web se genera un vínculo para descargar la imagen o se debe forzar la descarga automática y se deja el mismo nombre (extensión diferente) del fichero original.
+
+Se deben desarrollar tres aplicaciones diferentes:
+•	Aplicación Web
+•	Aplicación Shell, Modo Texto, usando comandos.
+•	Aplicación de Escritorio (Desktop) usando GUI tipo ventanas y botones.
+
+***
+
+Para el desarrollo de este software se realizó un Core en el cual se estableció tres clases: Converter.Java, ConverterExcepcion.java,  ImageFormat.java
+
+o Converter.java: importamos la clase File del paquete java.io el cual nos permite trabajar con archivos.
+o ConverterExcepcion.java: Para los errores en tiempo de ejecución.
+o ImageFormat.java : Donde declaramos los cuatro formatos a trabajar (bmp, png, jpg, gif).
