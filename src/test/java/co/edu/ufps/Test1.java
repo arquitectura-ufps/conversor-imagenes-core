@@ -16,7 +16,7 @@ class Test1 {
         Converter converter = new ImageConverter();
 
         try {
-            converter.validationMimeType(ext1);
+            converter.validationExtension(ext1);
         } catch (ValidationException e) {
             e.printStackTrace();
         }

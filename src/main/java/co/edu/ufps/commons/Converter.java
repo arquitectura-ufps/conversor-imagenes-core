@@ -11,5 +11,5 @@ public interface Converter {
     public void setFolder(String folder);
     public void setName(String nameFile);
     public File startProcess() throws ConverterException, ValidationException;
-    public ImageFormat validationMimeType(String mimeType) throws ValidationException;
+    public ImageFormat validationExtension(String mimeType) throws ValidationException;
 }

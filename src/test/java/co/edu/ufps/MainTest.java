@@ -16,12 +16,10 @@ public class MainTest {
         Converter converter = new ImageConverter();
         String ext = FilenameUtils.getExtension(image.getName());
 
-        if (!ext.equals("jpeg")){
-            try {
-                converter.validationMimeType(ext);
-            } catch (ValidationException e) {
-                e.printStackTrace();
-            }
+        try {
+            converter.validationExtension(ext);
+        } catch (ValidationException e) {
+            e.printStackTrace();
         }
 
         converter.source(image);
@@ -31,7 +29,7 @@ public class MainTest {
         converter.defineFormat(ImageFormat.PNG);
         run(converter);
 
-        converter.defineFormat(ImageFormat.BMP);
+        converter.defineFormat(ImageFormat.JPG);
         run(converter);
 
         converter.defineFormat(ImageFormat.GIF);

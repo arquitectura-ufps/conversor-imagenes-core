@@ -40,7 +40,10 @@ public class ImageConverter implements Converter,
     }
 
     @Override
-    public ImageFormat validationMimeType(String mimeType) throws ValidationException {
+    public ImageFormat validationExtension(String mimeType) throws ValidationException {
+        if (!mimeType.equals("jpeg")){
+            metaDataMimeType(mimeType);
+        }
         return metaDataMimeType(mimeType);
     }
 
