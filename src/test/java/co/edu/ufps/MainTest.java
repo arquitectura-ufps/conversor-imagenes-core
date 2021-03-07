@@ -13,37 +13,24 @@ public class MainTest {
     public static void main(String[] args) {
 
         File image = new File("temp/gato.bmp");
-        Converter converter = new ImageConverter();
-        String ext = FilenameUtils.getExtension(image.getName());
+        Core converter = new Core();
+
+        String formatImage = "png";
+        String nameFile = "Pirulais";
+        String destination = "C:/Users/manuel.florez/Desktop/img";
 
         try {
-            converter.validationExtension(ext);
+            // converter.converterImage(image, formatImage);
+            // converter.converterImage(image, formatImage, nameFile);
+            // converter.converterImage(image, formatImage, nameFile, destination);
+            File imageOut = converter.converterImage(image, formatImage, nameFile, destination);
         } catch (ValidationException e) {
             e.printStackTrace();
-        }
-
-        converter.source(image);
-        converter.setName("prrosCambi");
-        converter.setFolder("C:/Users/manuel.florez/Desktop/img");
-
-        converter.defineFormat(ImageFormat.PNG);
-        run(converter);
-
-        converter.defineFormat(ImageFormat.JPG);
-        run(converter);
-
-        converter.defineFormat(ImageFormat.GIF);
-        run(converter);
-
-    }
-
-    public static void run(Converter converter) {
-        try {
-            File imageOut = converter.startProcess();
-            System.out.println(imageOut.getAbsolutePath());
-        } catch (ConverterException | ValidationException e) {
-            System.out.println("Error: " + e.getMessage());
+        } catch (ConverterException e) {
             e.printStackTrace();
         }
+
+
     }
+
 }
