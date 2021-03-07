@@ -5,33 +5,36 @@ import co.edu.ufps.commons.Exception.ConverterException;
 import co.edu.ufps.commons.Exception.ValidationException;
 import co.edu.ufps.commons.ImageFormat;
 import co.edu.ufps.core.ImageConverter;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 
 public class MainTest {
     public static void main(String[] args) {
-        File image = new File("temp/caballo.jpg");
 
+        File image = new File("temp/gato.bmp");
         Converter converter = new ImageConverter();
+        String ext = FilenameUtils.getExtension(image.getName());
+
+        if (!ext.equals("jpeg")){
+            try {
+                converter.validationMimeType(ext);
+            } catch (ValidationException e) {
+                e.printStackTrace();
+            }
+        }
+
         converter.source(image);
         converter.setName("prrosCambi");
         converter.setFolder("C:/Users/manuel.florez/Desktop/img");
 
-        String mimeType = null;
-        try {
-            mimeType = converter.validateMimeType();
-        } catch (ValidationException e) {
-            e.printStackTrace();
-        }
-        ImageFormat formatInit = converter.validateMetaDataMineType(mimeType);
-
-        converter.defineFormatImages(formatInit, ImageFormat.PNG);
+        converter.defineFormat(ImageFormat.PNG);
         run(converter);
 
-        converter.defineFormatImages(formatInit, ImageFormat.BMP);
+        converter.defineFormat(ImageFormat.BMP);
         run(converter);
 
-        converter.defineFormatImages(formatInit, ImageFormat.JPG);
+        converter.defineFormat(ImageFormat.GIF);
         run(converter);
 
     }
@@ -40,7 +43,8 @@ public class MainTest {
         try {
             File imageOut = converter.startProcess();
             System.out.println(imageOut.getAbsolutePath());
-        } catch (ConverterException e) {
+        } catch (ConverterException | ValidationException e) {
+            System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
     }

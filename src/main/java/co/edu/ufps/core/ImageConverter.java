@@ -23,8 +23,7 @@ public class ImageConverter implements Converter,
     private String nameFile;
 
     @Override
-    public void defineFormatImages(ImageFormat formatInit, ImageFormat formatEnd) {
-        this.formatInit = formatInit;
+    public void defineFormat(ImageFormat formatEnd) {
         this.formatEnd = formatEnd;
     }
 
@@ -34,9 +33,20 @@ public class ImageConverter implements Converter,
     }
 
     @Override
-    public File startProcess() throws ConverterException {
+    public File startProcess() throws ConverterException, ValidationException {
+        validation();
         String destination = myFolder() + "/" + myNameFile();
         return start(image, formatEnd, destination);
+    }
+
+    @Override
+    public ImageFormat validationMimeType(String mimeType) throws ValidationException {
+        return metaDataMimeType(mimeType);
+    }
+
+    private void validation() throws ValidationException {
+        String mimeType = getMimeType(image);
+        formatInit = metaDataMimeType(mimeType);
     }
 
     private String myNameFile() {
@@ -71,13 +81,4 @@ public class ImageConverter implements Converter,
         this.nameFile = nameFile;
     }
 
-    @Override
-    public String validateMimeType() throws ValidationException {
-        return getMimeType(image);
-    }
-
-    @Override
-    public ImageFormat validateMetaDataMineType(String mimeType) {
-        return validateMetaDataMineType(mimeType);
-    }
 }

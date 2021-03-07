@@ -10,11 +10,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
+import static java.util.Objects.isNull;
+
 public interface IValidation {
 
     default String getMimeType(File image) throws ValidationException {
         try {
             ImageInputStream iis = ImageIO.createImageInputStream(image);
+            if (isNull(iis)) {
+                throw new ValidationException("Error: No se pudo leer la imagen");
+            }
             Iterator<ImageReader> readers = ImageIO.getImageReaders(iis);
             if (readers.hasNext()) {
                 ImageReader reader = readers.next();
