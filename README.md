@@ -1,2 +1,8 @@
 # conversor-imagenes-core
-Proyecto core el cual permite convertir tipos de imágenes (bmp, jpg, png, gif).
+
+**Diagonostico 0:  Conversor imagenes**
+
+El proyecto core permite convertir imagenes (bmp,jpg,png y gif).
+
+
+
