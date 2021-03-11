@@ -17,5 +17,14 @@ Declarando el metodo **Interface Converter**: definimos los formatos de imagen, 
 **ImageConverter.java** usa una interfaz llamada **IConverter.java**
 
 * En la clase **IConverter.java** con unos metodos predefinidos, en donde cada imagen trabaja de la misma manera, dependiendo el caso cambia su formato. Tambien hay unas clases personalizadas, por si llega a existir algun error al momento de convertir, escribir o leer la imagen, este entrega el error en cada metodo.
+* Uso de herramientas
+
+Para el desarrollo del Software en el Lenguaje Java se utilizaron las siguientes herramientas:
+ 
+Java Swing, Spring boot,  intellij IDE, gradle para la construcción del Core que se encuentra en la plataforma Github:
+https://github.com/arquitectura-ufps/conversor-imagenes-core  
+
+Java Swing , netbeans, eclipse y maven para el desarrollo de las aplicaciones Shell y Desktop.
+
  
  
